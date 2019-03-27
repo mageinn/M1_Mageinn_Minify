@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Mageinn_Core extension
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* @category    Mageinn
+* @package     Mageinn_Core
+* @copyright   Copyright (c) 2016 Mageinn. (http://mageinn.com/)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+
+/**
+* @category   Mageinn
+* @package    Mageinn_Core
+* @author     Mageinn
+*/
+-->
+<config>
+    <modules>
+        <Mageinn_Core>
+            <version>1.1.0</version>
+        </Mageinn_Core>
+    </modules>
+    <global>
+        <helpers>
+            <mageinn_core>
+                <class>Mageinn_Core_Helper</class>
+            </mageinn_core>
+        </helpers>
+        <models>
+            <mageinn_core>
+                <class>Mageinn_Core_Model</class>
+            </mageinn_core>
+        </models>
+        <events>
+            <core_layout_update_updates_get_after>
+                <observers>
+                    <mageinn_core_layout_update_updates_get_after>
+                        <type>singleton</type>
+                        <class>mageinn_core/observer</class>
+                        <method>removeInactiveLayouts</method>
+                    </mageinn_core_layout_update_updates_get_after>
+                </observers>
+            </core_layout_update_updates_get_after>
+        </events>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <mageinn_core>
+                    <file>mageinn/core.xml</file>
+                </mageinn_core>
+            </updates>
+        </layout>
+        <routers>
+            <mageinn_core>
+                <use>standard</use>
+                <args>
+                    <module>Mageinn_Core</module>
+                    <frontName>mageinn_core</frontName>
+                </args>
+            </mageinn_core>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mageinn_core translate="title">
+                                            <title>Mageinn Core - General</title>
+                                        </mageinn_core>
+                                    </children>
+                                </config>      
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Mageinn_Core>
+                    <files>
+                        <default>Mageinn_Core_Admin.csv</default>
+                    </files>
+                </Mageinn_Core>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <mageinn_core ifconfig="mageinn_core/jquery/jquery_admin">
+                    <file>mageinn/core.xml</file>
+                </mageinn_core>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <mageinn_core>
+                        <type>singleton</type>
+                        <class>mageinn_core/observer</class>
+                        <method>preDispatch</method>
+                    </mageinn_core>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
+</config>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mageinn_Minify>
+            <version>1.0.0</version>
+        </Mageinn_Minify>
+    </modules>
+    <global>
+        <blocks>
+            <mageinn_minify>
+                <class>Mageinn_Minify_Block</class>
+            </mageinn_minify>
+            <!--<page>
+                <rewrite>
+                    <html_head>Mageinn_Minify_Block_Page_Html_Head</html_head>
+                </rewrite>
+            </page>-->
+        </blocks>
+        <models>
+            <mageinn_minify>
+                <class>Mageinn_Minify_Model</class>
+            </mageinn_minify>
+            <core>
+                <rewrite>
+                    <design_package>Mageinn_Minify_Model_Core_Design_Package</design_package>
+                </rewrite>
+            </core>
+        </models>
+        <helpers>
+            <mageinn_minify>
+                <class>Mageinn_Minify_Helper</class>
+            </mageinn_minify>
+            <core>
+                <rewrite>
+                    <data>Mageinn_Minify_Helper_Core_Data</data>
+                </rewrite>
+            </core>
+        </helpers>
+    </global>
+   
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mageinn_minify translate="title">
+                                            <title>Mageinn Minify</title>
+                                        </mageinn_minify>
+                                    </children>
+                                </config>      
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>
